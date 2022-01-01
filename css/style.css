@@ -17,7 +17,7 @@ a {
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   display: block;
   border-radius: 4px;
 }
@@ -31,6 +31,28 @@ img {
     "header header header"
     "sidenav content anuncios"
     "footer footer footer";
+}
+
+@media (max-width: 1200px) {
+  .estrutura {
+    grid-template-areas:
+      "header header header"
+      "sidenav content content"
+      "sidenav anuncios anuncios"
+      "footer footer footer";
+  }
+}
+
+@media (max-width: 800px) {
+  .estrutura {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "content"
+      "anuncios"
+      "footer";
+  }
 }
 
 /* Header */
@@ -67,6 +89,19 @@ img {
   background: rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 800px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .header nav a {
+    font-size: 1rem;
+  }
+  .header nav ul {
+    gap: 10px;
+  }
+}
+
 /* Sidenav */
 
 .sidenav {
@@ -90,6 +125,45 @@ img {
   background: #b07dfb;
 }
 
+@keyframes seta {
+  from {
+    right: 30px;
+  }
+  to {
+    right: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  .sidenav {
+    position: relative;
+    padding: 0 30px;
+    overflow-x: scroll;
+  }
+  .sidenav::after {
+    content: "→";
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    color: rgba(0, 0, 0, 0.3);
+    animation: seta 0.5s ease-in 0s infinite alternate;
+  }
+  .sidenav li a {
+    padding: 20px;
+  }
+  .sidenav ul {
+    display: flex;
+    gap: 20px;
+  }
+  .sidenav ul li {
+    flex: 1 0 120px;
+  }
+
+  .sidenav li a {
+    margin: 30px 0;
+  }
+}
+
 /* Content */
 
 .content {
@@ -100,6 +174,12 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
+}
+
+@media (max-width: 600px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
 }
 
 .col-wide {
@@ -222,8 +302,9 @@ p {
   background: #fafbfc;
   display: grid;
   align-content: start;
-  gap: 10px;
+  gap: 30px;
   padding: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 /* Footer */
